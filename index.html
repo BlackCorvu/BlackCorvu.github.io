@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>郑杰康 - 算法工程师作品集</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // 设置Tailwind主题
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                    },
+                },
+            },
+        }
+
+        // 暗色模式切换
+        function setupTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        // 页面加载时设置主题
+        setupTheme();
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        html {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .btn-hover {
+            transition: all 0.2s ease;
+        }
+        
+        .btn-hover:hover {
+            transform: scale(1.05);
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 4px;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 导航栏 -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">郑杰康</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#about" class="px-3 py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">关于我</a>
+                    <a href="#education" class="px-3 py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">教育经历</a>
+                    <a href="#experience" class="px-3 py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">实习经历</a>
+                    <a href="#projects" class="px-3 py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">项目经历</a>
+                    <a href="#skills" class="px-3 py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">专业技能</a>
+                    <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- 个人简介部分 -->
+        <section id="about" class="mb-16 animate-on-scroll">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-2">
+                    <h1 class="text-4xl font-bold mb-4 text-primary-700 dark:text-primary-400">郑杰康</h1>
+                    <p class="text-lg mb-4"><i class="fas fa-briefcase mr-2 text-primary-600 dark:text-primary-500"></i>算法实习生</p>
+                    <p class="mb-4"><i class="fas fa-envelope mr-2 text-primary-600 dark:text-primary-500"></i>corvuwork@gmail.com</p>
+                    <p class="mb-6"><i class="fas fa-phone mr-2 text-primary-600 dark:text-primary-500"></i>(+86) 15797347616</p>
+                    
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-100 dark:border-gray-700">
+                        <h2 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-user-circle mr-2 text-primary-600 dark:text-primary-500"></i>自我评价
+                        </h2>
+                        <ul class="space-y-3 list-inside text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>本科成绩优异，熟练掌握数据结构与算法、操作系统、计算机网络、设计模式等计算机核心知识，具备系统分析与设计能力</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>本科期间担任几乎所有课程的组长，具备项目统筹规划与团队协调能力，能够与团队成员高效合作，有效推动项目进展</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>对技术充满热情，具备良好的编程习惯，代码结构清晰，注重细节与可维护性，能够快速掌握新技术并应用于实际项目中</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>热爱运动，保持良好的身体素质与积极的生活态度，能够应对高强度的工作挑战</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-64 h-64 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-600 dark:to-primary-900 flex items-center justify-center text-white text-5xl font-bold shadow-lg">
+                        郑杰康
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育经历部分 -->
+        <section id="education" class="mb-16 animate-on-scroll">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 flex items-center">
+                <i class="fas fa-graduation-cap mr-3 text-primary-600 dark:text-primary-500"></i>教育经历
+            </h2>
+            
+            <div class="space-y-8">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400">湖北汽车工业学院</h3>
+                            <p class="text-lg mb-2">计算机科学与技术学院 | 计算机科学与技术专业</p>
+                            <p class="mb-2 text-gray-600 dark:text-gray-400">本科 | 2024/09 – 2026/06</p>
+                            <p class="font-medium">GPA：4.73 / 5.00 (百分制成绩 92.27) <span class="text-green-600 dark:text-green-400">排名：14 / 199 (7%)</span></p>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
+                                <i class="fas fa-award mr-1"></i> 本科在读
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h4 class="font-medium mb-2">荣誉奖项：</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                <i class="fas fa-medal mr-1"></i> 国家励志奖学金 (1%)
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                <i class="fas fa-certificate mr-1"></i> 校级奖学金一等奖 (5%)
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                <i class="fas fa-hands-helping mr-1"></i> 社会活动奖学金 (5%)
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                                <i class="fas fa-user-tie mr-1"></i> 优秀班级干部称号 (1%)
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
+                                <i class="fas fa-star mr-1"></i> 优秀学生称号 (5%)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400">武汉软件工程职业学院</h3>
+                            <p class="text-lg mb-2">信息学院 | 人工智能专业</p>
+                            <p class="mb-2 text-gray-600 dark:text-gray-400">专科 | 2021/09 – 2024/06</p>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                <i class="fas fa-check-circle mr-1"></i> 已毕业
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 竞赛经历部分 -->
+        <section id="competitions" class="mb-16 animate-on-scroll">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 flex items-center">
+                <i class="fas fa-trophy mr-3 text-primary-600 dark:text-primary-500"></i>竞赛经历
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400">RoboCom机器人开发者大赛CAIP编程设计赛道</h3>
+                            <p class="font-medium text-green-600 dark:text-green-400">湖北省银奖 (省级)</p>
+                        </div>
+                        <div class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
+                            2024/07 – 2024/10
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400">第十四届"蓝桥杯"个人赛（算法类）</h3>
+                            <p class="font-medium text-green-600 dark:text-green-400">湖北省赛二等奖 (省级)</p>
+                        </div>
+                        <div class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
+                            2024/03 – 2024/10
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实习经历部分 -->
+        <section id="experience" class="mb-16 animate-on-scroll">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 flex items-center">
+                <i class="fas fa-briefcase mr-3 text-primary-600 dark:text-primary-500"></i>实习经历
+            </h2>
+            
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                <div class="flex flex-col md:flex-row justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400">广州火飞网络技术有限公司</h3>
+                        <p class="text-lg font-medium">Python实习生</p>
+                    </div>
+                    <div class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
+                        2024/07 – 2024/09
+                    </div>
+                </div>
+                
+                <ul class="space-y-3 list-inside text-gray-700 dark:text-gray-300">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                        <span>参与广告助手开发与搭建，旨在通过自动化 Workflow 提升尽职调查效率，解决传统投流流程中耗时长、易出错、成本高的问题</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                        <span>在服务器本地部署 Dify，设计并实现尽调助手 Workflow，涵盖问题分类、会议纪要生成、观点一致性分析及常规问题处理</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                        <span>集成数据库并调用 LLM 接口，设计分类与处理逻辑，测试并优化 Workflow，确保功能准确高效</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                        <span>成功部署并上线广告助手，问题分类准确率超 95%，会议纪要生成与观点分析功能显著提升效率，获得广告团队积极反馈</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 项目经历部分 -->
+        <section id="projects" class="mb-16 animate-on-scroll">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 flex items-center">
+                <i class="fas fa-code-branch mr-3 text-primary-600 dark:text-primary-500"></i>项目经历
+            </h2>
+            
+            <div class="space-y-8">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700">
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400">智蝴蝶：自然语言辅助的蝴蝶图像分类系统</h3>
+                                <p class="text-lg font-medium">项目负责人</p>
+                            </div>
+                            <div class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
+                                2024/10 – 2025/02
+                            </div>
+                        </div>
+                        
+                        <p class="mb-4 text-gray-700 dark:text-gray-300">本项目旨在结合计算机视觉与自然语言处理技术，开发一种高精度的蝴蝶种类自动识别系统，推动跨学科创新应用</p>
+                        
+                        <ul class="space-y-3 list-inside text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>负责数据集预处理与特征提取模块设计，基于 Leeds Butterfly Dataset 开发多模态融合模型，解决传统视觉识别精度不足问题</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>设计并实现基于 CNN+RNN 的多模态深度学习架构，使用 PyTorch 框架处理图像与文本数据，开发特征融合算法提升分类准确率</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>构建端到端的模型训练与评估流程，设计交叉验证方案与性能评估指标，分析不同特征融合策略的效果与模型优化方向</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>系统在测试集上达到 93.7% 的分类准确率，比纯视觉模型提升 17.2%，验证了多模态融合方法的有效性，研究成果获导师高度评价</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                Python
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+                                PyTorch
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                                计算机视觉
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                自然语言处理
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                                多模态融合
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700">
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400">花卉识：随机数杯Python小组赛第一名</h3>
+                                <p class="text-lg font-medium">软件开发组负责人</p>
+                            </div>
+                            <div class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
+                                2024/03 – 2024/10
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 list-inside text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>主导花卉图像数据处理工作，爬取并清洗1.2万张花卉图像(玫瑰/百合二分类)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>运用数据增强技术将数据集扩增至3.6万张，基于TensorFlow搭建卷积神经迁移学习模型</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                                <span>通过优化学习率调度策略，使训练集准确率达到95.4%，测试集F1-score达到92.7%</span>
+                            </li>
+                        </ul>
+                        
+                        <p class="mt-4 text-gray-700 dark:text-gray-300">
+                            项目获得随机数杯Python小组赛第一名，通过本项目提升了图像识别技术能力，为图像类产品开发积累了宝贵经验
+                        </p>
+                        
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                Python
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200">
+                                TensorFlow
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                                计算机视觉
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                数据增强
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
+                                迁移学习
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 专业技能部分 -->
+        <section id="skills" class="mb-16 animate-on-scroll">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 flex items-center">
+                <i class="fas fa-cogs mr-3 text-primary-600 dark:text-primary-500"></i>专业技能
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center text-primary-700 dark:text-primary-400">
+                        <i class="fas fa-code mr-2"></i>编程语言与框架
+                    </h3>
+                    <ul class="space-y-3 list-inside text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                            <span>熟悉 Python 编程语言和 TensorFlow 框架，具备模型开发与算法实现能力</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                            <span>熟悉 scikit-learn、TensorFlow/PyTorch 等机器学习框架，具备从数据预处理到模型部署的完整流程经验</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center text-primary-700 dark:text-primary-400">
+                        <i class="fas fa-laptop-code mr-2"></i>开发工具与环境
+                    </h3>
+                    <ul class="space-y-3 list-inside text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                            <span>熟悉 Linux 环境及基本操作，掌握 Git, Docker 开发工具以及 GitHub Actions CI/CD 工作流</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700 md:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center text-primary-700 dark:text-primary-400">
+                        <i class="fas fa-brain mr-2"></i>机器学习能力
+                    </h3>
+                    <ul class="space-y-3 list-inside text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-2 text-green-500"></i>
+                            <span>具备全栈机器学习开发能力，能够将机器学习模型集成到实际应用中，并持续优化模型性能</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-8 border-t border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-lg font-bold text-primary-700 dark:text-primary-400">郑杰康</h3>
+                    <p class="text-gray-600 dark:text-gray-400">算法工程师作品集</p>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="https://github.com/BlackCorvu" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="mailto:corvuwork@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-center text-gray-600 dark:text-gray-400 text-sm">
+                © 2025 郑杰康. 保留所有权利.
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-primary-600 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-700 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 主题切换功能
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+        
+        // 动画效果
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                // 当元素进入视口时添加动画类
+                if (position.top < window.innerHeight * 0.85) {
+                    element.classList.add('animated');
+                }
+            });
+            
+            // 控制返回顶部按钮的显示
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        }
+        
+        // 平滑滚动到顶部
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 页面加载和滚动时执行动画
+        window.addEventListener('load', handleScrollAnimations);
+        window.addEventListener('scroll', handleScrollAnimations);
+    </script>
+</body>
+</html>

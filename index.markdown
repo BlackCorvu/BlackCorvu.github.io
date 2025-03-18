@@ -4,5 +4,3 @@
 
 layout: home
 ---
-
-![证件照](/images/证件照.jpg)
